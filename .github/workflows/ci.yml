@@ -1,0 +1,32 @@
+name: Continuous Integration (CI)
+
+# Trigger: S'executa quan hi ha una Pull Request cap a la branca main
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    name: Install Dependencies and Run Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Descarrega el codi font del repositori a la màquina virtual
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Step 2: Configura l'entorn de Node.js
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      # Step 3: Instal·la les dependències projectades en el package.json
+      - name: Install dependencies
+        run: npm ci
+
+      # Step 4: Executa la suite de proves (Vitest)
+      - name: Execute unit tests
+        run: npm test
