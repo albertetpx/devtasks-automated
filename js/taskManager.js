@@ -7,7 +7,8 @@ export function isValidTask(title) {
   if (typeof title !== 'string') return false;
   const trimmed = title.trim();
   // Validem que no estigui buit i que tingui una longitud mínima de 3 caràcters
-  return trimmed.length >= 3 && trimmed.length <= 100;
+  // return trimmed.length >= 3 && trimmed.length <= 100;
+  return false
 }
 
 // 2. Creació d'un objecte de tasca
